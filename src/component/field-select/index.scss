@@ -34,7 +34,7 @@
 
 	.field__container:hover {
 		.field__select {
-			border-color: s.color(gray);
+			border-color: s.color("gray");
 		}
 	}
 
@@ -61,7 +61,7 @@
 	.field__option-list {
 		padding: s.space(4);
 		display: none;
-		border: 1px solid s.color(box);
+		border: 1px solid s.color("box");
 		border-radius: 10px;
 		overflow: scroll;
 		background: s.color("background");
