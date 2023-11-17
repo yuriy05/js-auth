@@ -11,6 +11,18 @@ User.create({
   role: 1,
 })
 
+User.create({
+  email: 'admin@mail.com',
+  password: 123,
+  role: 2,
+})
+
+User.create({
+  email: 'developer@mail.com',
+  password: 123,
+  role: 3,
+})
+
 // ================================================================
 
 // router.get Створює нам один ентпоїнт
@@ -53,30 +65,30 @@ router.get('/signup', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
-router.post('/signup', function(res, req) {
-  const {email, password, role} = req.body
+router.post('/signup', function (req, res) {
+  const { email, password, role } = req.body
 
   console.log(req.body)
 
   if (!email || !password || !role) {
     return res.status(400).json({
-      message: "Помилка. Обов'язкові поля відсутні"
+      message: "Помилка. Обов'язкові поля відсутні",
     })
   }
 
   try {
-
-    User.create({email, password, role})
+    User.create({ email, password, role })
 
     return res.status(200).json({
-      message: "Користувач успішно зареєстрований"
+      message: 'Користувач успішно зареєстрованний',
     })
-  } catch(error) {
-     return res.status(400).json({
-      message: "Помилка свторення користувача"
-     })
+  } catch (err) {
+    return res.status(400).json({
+      message: 'Помилка створення користувача',
+    })
   }
 })
+
 
 // Підключаємо роутер до бек-енду
 module.exports = router
