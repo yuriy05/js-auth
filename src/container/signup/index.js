@@ -18,9 +18,9 @@ class SignupForm extends Form {
     IS_BIG: 'Дуже довге значення, приберіть зайве',
     EMAIL: 'Введіть коректне значення e-mail адреси',
     PASSWORD:
-      'Пароль повинен складатися з не менше ніж 8 символів, включаючи хоча б одну цифру, малу та велику літеру',
+      'Пароль повинен складатися з не менше ніж 8 символів англійського алфавіту, включаючи хоча б одну цифру, малу та велику літеру',
     PASSWORD_AGAIN:
-      'Ваш другий пароль не збігається з першим',
+      'Ваш пароль повинен збігатися із першим',
     NOT_CONFIRM: 'Ви не погоджуєтесь з правилами',
     ROLE: 'Ви не обрали роль',
   }
@@ -28,10 +28,6 @@ class SignupForm extends Form {
   validate = (name, value) => {
     if (String(value).length < 1) {
       return this.FIELD_ERROR.IS_EMPTY
-    }
-
-    if (String(value).length > 20) {
-      return this.FIELD_ERROR.IS_BIG
     }
 
     if (name === this.FIELD_NAME.EMAIL) {
@@ -43,6 +39,8 @@ class SignupForm extends Form {
     if (name === this.FIELD_NAME.PASSWORD) {
       if (!REG_EXP_PASSWORD.test(String(value))) {
         return this.FIELD_ERROR.PASSWORD
+      } else if (String(value).length > 20) {
+        return this.FIELD_ERROR.IS_BIG
       }
     }
 
